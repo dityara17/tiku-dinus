@@ -5,7 +5,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $('#date_input').datepicker({
-	dateFormat: 'dd-mm-yy'
+	dateFormat: 'yy-mm-dd'
 });
 </script>
 

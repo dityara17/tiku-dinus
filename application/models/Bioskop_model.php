@@ -43,21 +43,36 @@ class Bioskop_model extends CI_Model
 		$freeSeat = [];
 		foreach ($seat as $itemSeat) {
 			foreach ($bookings as $itemBook) {
-				if ($itemSeat->nokur == $itemBook->nokur){
-					array_push($freeSeat,$itemBook->nokur);
+				if ($itemSeat->nokur == $itemBook->nokur) {
+					array_push($freeSeat, $itemBook->nokur);
 				}
 			}
 		}
 		return $freeSeat;
 	}
 
-	public function get_jadwal(){
+	public function add_pesanan($id_film, $tanggal_nonton, $sesi, $kursi, $nama, $phone)
+	{
+		$data = [
+			'id_film' => $id_film,
+			'tanggal_nonton' => $tanggal_nonton,
+			'id_jadwal' => $sesi,
+			'nokur' => $kursi,
+			'nama' => $nama,
+			'phone' => $phone
+		];
+		return $this->db->insert('pesanan', $data);
+	}
+
+	public function get_jadwal()
+	{
 		$result = $this->db->order_by('jadwal', 'asc')->get('jadwal');
 		return $result->result();
 	}
 
 
-	public function get_jadwal_by_id($id){
+	public function get_jadwal_by_id($id)
+	{
 		$q = [
 			'id_jadwal' => $id,
 		];

@@ -56,5 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['pesan_tiket'] = 'bioskop/pesan_tiket';
 $route['kursi'] = 'bioskop/pilih_kursi';
 $route['konfirmasi'] = 'bioskop/konfirmasi_bayar';
-$route['cetak'] = 'bioskop/cetak';
-$route['add-book'] = 'bioskop/add_book';
+$route['cetak_tiket'] = 'bioskop/cetak';
+$route['konfirmasi-bayar'] = 'bioskop/konfirmasi_book';

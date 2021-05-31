@@ -5,7 +5,8 @@
 
 <div class="container">
 	<div class="" style="padding: 60px 0">
-		<form action="<?= site_url('add-book') ?>" method="post">
+		<form action="<?= site_url('konfirmasi-bayar') ?>" method="post">
+			<input type="hidden">
 			<table>
 				<tr>
 					<th width="150">Film</th>
@@ -13,7 +14,7 @@
 				</tr>
 				<tr>
 					<th>Jadwal</th>
-					<td><?= $sesi->jadwal ?></td>
+					<td><?= $this->session->tanggal_nonton." - ".$sesi->jadwal ?></td>
 				</tr>
 				<tr>
 					<th>Tempat Duduk</th>
@@ -21,15 +22,24 @@
 						<table>
 							<th>&nbsp;</th>
 							<?php for ($i = 1; $i <= 5; $i++): ?>
-
-								<td><?= $i ?></td>
+								<td class="text-center"><?= $i ?></td>
 							<?php endfor; ?>
 							<!--			Baris				-->
 							<?php for ($row = 'A'; $row <= 'E'; $row++): ?>
 								<tr>
 									<td><?= $row ?></td>
 									<?php for ($col = 1; $col <= 5; $col++): ?>
-										<td><input value="<?= $row.$col ?>" name="seat[]" type="checkbox"></td>
+										<td>
+											<input
+												<?php
+												if($this->session->data_kursi &&
+													in_array($row.$col, $this->session->data_kursi))
+												{ echo "checked";}
+
+												if (in_array($row.$col,$booked)) {echo "disabled";}
+												?>
+												value="<?= $row.$col ?>" name="kursi[]" type="checkbox">
+										</td>
 									<?php endfor; ?>
 								</tr>
 							<?php endfor; ?>

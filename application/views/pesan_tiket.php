@@ -19,13 +19,13 @@
 			</div>
 		</div>
 	</div>
-	<form action="<?= site_url() ?>/kursi" method="get">
+	<form action="<?= site_url() ?>/kursi" method="post">
 		<div class="row">
 			<div class="col-md-2">
 				<strong>Tanggal</strong>
 			</div>
 			<div class="col-md-4 form-group">
-				<input type="text" name="tanggal_tiket" id="date_input" class="form-control-sm form-control">
+				<input type="text" name="tanggal_nonton" id="date_input" class="form-control-sm form-control">
 			</div>
 		</div>
 		<div class="row">

@@ -30,40 +30,37 @@ class Bioskop extends CI_Controller
 	// need to filter seat
 	public function pilih_kursi()
 	{
-		$date = $this->input->get('tanggal_tiket');
-		$film_id = $this->input->get('film_id');
-		$jadwal = $this->input->get('sesi');
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$this->session->id_film = $this->input->post('film_id');
+			$this->session->tanggal_nonton = $this->input->post('tanggal_nonton');
+			$this->session->id_jadwal = $this->input->post('sesi');
+		}
 
-		$data['film'] = $this->bioskop_model->get_film_by_id($film_id);
-		$data['sesi'] = $this->bioskop_model->get_jadwal_by_id($jadwal);
-		$data['booked'] = $this->bioskop_model->booked_seat($film_id, $date, $jadwal);;
+
+
+		$data['film'] = $this->bioskop_model->get_film_by_id($this->session->id_film);
+		$data['sesi'] = $this->bioskop_model->get_jadwal_by_id($this->session->id_jadwal);
+		$data['booked'] = $this->bioskop_model->booked_seat($this->session->id_film, $this->session->tanggal_nonton, $this->session->id_jadwal);
 
 		$this->load->view('pilihan_kursi', $data);
 	}
 
-	public function add_book()
+	public function konfirmasi_book()
 	{
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 
-			$film_id = $this->input->post('film_id');
-			$film = $this->bioskop_model->get_film_by_id($film_id);
-
-			$data_save = [
-				'id_film' => $film->id_film,
-				'film_judul' => $film->judul,
-				'tanggal' => $this->input->post('tanggal'),
-				'kursi' => $this->input->post('kursi'),
-			];
+			$this->session->data_kursi = $this->input->post('kursi');
 		}
 
+		$data['total'] = count($this->session->data_kursi) * 60000;
+		$data['sesi'] = $this->bioskop_model->get_jadwal_by_id($this->session->id_jadwal);
+		$data['film'] = $this->bioskop_model->get_film_by_id($this->session->id_film);
+
+		$this->load->view('konfirmasi', $data);
 	}
 
 
-	public function konfirmasi_bayar()
-	{
-		$this->load->view('konfirmasi');
-	}
 
 	public function cetak()
 	{

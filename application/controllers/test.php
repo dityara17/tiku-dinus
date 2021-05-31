@@ -47,4 +47,13 @@ class test extends CI_Controller
 		echo "</pre>";
 	}
 
+	public function session(){
+		$session = array('islogged' => true, 'user_id' => '1');
+
+		$this->session->nando = 3;
+
+		echo $this->session->nando;
+
+	}
+
 }
