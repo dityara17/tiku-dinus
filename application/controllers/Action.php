@@ -31,7 +31,8 @@ class Action extends CI_Controller
 	{
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 			$nama = $this->input->post('nama');
-			$phone = $this->input->post('phone');
+			$nik = $this->input->post('nik');
+			$usia = $this->input->post('usia');
 		}
 		$data_kursi = $this->session->data_kursi;
 		$id_film = $this->session->id_film;
@@ -39,8 +40,12 @@ class Action extends CI_Controller
 		$id_jadwal = $this->session->id_jadwal;
 
 
+		// save identitas
+		$id_identitas = $this->bioskop_model->save_identity($nik,$nama,$usia);
+
+
 		foreach ($data_kursi as $kursi) {
-			$this->bioskop_model->add_pesanan($id_film, $tanggal, $id_jadwal, $kursi, $nama, $phone);
+			$this->bioskop_model->add_pesanan($id_film, $tanggal, $id_jadwal, $kursi, $id_identitas);
 		}
 
 		$film = $this->bioskop_model->get_film_by_id($id_film);
@@ -51,11 +56,23 @@ class Action extends CI_Controller
 			'jadwal' => $this->bioskop_model->get_jadwal_by_id($id_jadwal)->jadwal,
 			'kursi' => $data_kursi,
 			'nama' => $nama,
-			'phone' => $phone,
+			'nik' => $nik,
+			'usia' => $usia,
+			'id_identitas' => $id_identitas,
 		];
 		$this->session->unset_userdata(['data_kursi', 'id_film', 'tanggal_nonton', 'id_jadwal']);
 		redirect('/cetak_tiket');
 	}
 
+	public function update(){
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$nama = $this->input->post('nama');
+			$nik = $this->input->post('nik');
+			$usia = $this->input->post('usia');
+			$id = $this->input->post('id_identitas');
+		}
+		$this->bioskop_model->updateIdentitas($nik,$nama,$usia,$id);
+		redirect('/cetak_tiket');
+	}
 
 }

@@ -40,8 +40,12 @@
 							<input type="text" name="nama" required class="form-control form-control-sm">
 						</div>
 						<div class="form-group">
-							<label for="">Telephone</label>
-							<input type="text" name="phone" required class="form-control form-control-sm">
+							<label for="">NIK</label>
+							<input type="text" name="nik" required class="form-control form-control-sm">
+						</div>
+						<div class="form-group">
+							<label for="">Usia</label>
+							<input type="text" name="usia" required class="form-control form-control-sm">
 						</div>
 						<button type="submit" class="btn btn-primary">Bayar</button>
 					</div>

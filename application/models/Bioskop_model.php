@@ -51,17 +51,54 @@ class Bioskop_model extends CI_Model
 		return $freeSeat;
 	}
 
-	public function add_pesanan($id_film, $tanggal_nonton, $sesi, $kursi, $nama, $phone)
+	public function save_identity($nik,$nama,$usia){
+		
+		$identitasD = [
+			'nik' => $nik,
+			'nama' => $nama,
+			'usia' => $usia,
+		];
+
+		$this->db->insert('identitas', $identitasD);
+		$lastID = $this->db->insert_id();
+		return $lastID;
+	}
+
+	public function updateIdentitas($nik,$nama,$usia,$id){
+		$identitasD = [
+			'nik' => $nik,
+			'nama' => $nama,
+			'usia' => $usia,
+		];
+		$this->db->where('id_identitas', $id);
+		$this->db->update('identitas', $identitasD);
+	}
+
+	public function getIdentitas($id){
+		if (!$id) {
+			return false;
+		}
+		$q = [
+			'id_identitas' => $id,
+		];
+		$result = $this->db->get_where('identitas', $q);
+		return $result->row();
+	}
+
+	public function add_pesanan($id_film, $tanggal_nonton, $sesi, $kursi, $id_identitas)
 	{
+		
 		$data = [
 			'id_film' => $id_film,
 			'tanggal_nonton' => $tanggal_nonton,
 			'id_jadwal' => $sesi,
 			'nokur' => $kursi,
-			'nama' => $nama,
-			'phone' => $phone
+			'id_identitas' => $id_identitas
 		];
-		return $this->db->insert('pesanan', $data);
+		$this->db->insert('pesanan', $data);
+		// save identitas
+
+		return true;
 	}
 
 	public function get_jadwal()
@@ -79,5 +116,4 @@ class Bioskop_model extends CI_Model
 		$result = $this->db->get_where('jadwal', $q);
 		return $result->row();
 	}
-
 }

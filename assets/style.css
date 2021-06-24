@@ -1,18 +1,40 @@
-.center_title{
+.center_title {
 	text-align: center;
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-.kotak_film{
+
+.kotak_film {
 	margin-bottom: 20px;
 }
-.footer{
-	background-color: cornflowerblue;
-	color: cornsilk;
+
+.kotak_film img {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+	border-radius: 5px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+.kotak_film a{
+	color: #333333;
+	text-decoration: none;
+}
+.kotak_film .title-section h3{
+	font-size: 18px;
+}
+.kotak_film .title-section{
+	padding: 8px 0;
 	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.footer {
+	background-color: #4F5155;
+	color: white;
+	text-align: center;
 }
 
 
@@ -59,4 +81,73 @@ input[type='checkbox']:checked + span::before {
 input[type='checkbox']:disabled {
 	border: 2px solid #f31e37;
 	background-color: black;
+}
+
+
+nav {
+
+}
+
+#content {
+	background: #ffffff;
+	padding: 40px 0;
+}
+
+#slider {
+	padding: 20px 0;
+	background: #e7e7e7;
+}
+
+.mb-4, .my-4 {
+	margin-bottom: 1.5rem !important;
+}
+
+.carousel-inner img {
+	width: 100%;
+	object-fit: cover;
+	height: 380px !important;
+	border-radius: 15px !important;
+}
+
+footer{
+	margin-top: 180px;
+	position: relative;
+	font-size: 18px
+}
+footer ul a:hover{
+	color: #ffffff;
+}
+footer ul a{
+	font-size: 18px;
+	color: white;
+}
+
+.footer-overlay a{
+	font-size: 21px;
+	color: #333333;
+}
+.footer-overlay h3{
+	font-size: 21px;
+}
+.footer-overlay{
+	color: #333333;
+	width: 80%;
+	top: -50px;
+	right: 50%;
+	transform: translateX(50%);
+	position: absolute;
+	background: #f7f7f7;
+	border-radius: 4px;
+	padding: 8px;
+	box-shadow: rgb(32 37 41 / 25%) 0px 2px 4px;
+}
+.hero{
+	padding: 60px 0;
+	background-size: cover !important;
+}
+
+.hero img{
+	width: 100%;
+	height: 380px;
+	border-radius: 10px;
 }

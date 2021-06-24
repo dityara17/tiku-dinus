@@ -1,7 +1,7 @@
 <?php $this->view('inc_header.php'); ?>
 
 
-<h1 class="center_title"> Pilihan Kursi</h1>
+<h3 class="center_title"> Pilihan Kursi</h3>
 
 <div class="container">
 	<div class="" style="padding: 60px 0">
@@ -14,7 +14,7 @@
 				</tr>
 				<tr>
 					<th>Jadwal</th>
-					<td><?= $this->session->tanggal_nonton." - ".$sesi->jadwal ?></td>
+					<td><?= date('d F Y', strtotime($this->session->tanggal_nonton))." - ".$sesi->jadwal ?></td>
 				</tr>
 				<tr>
 					<th>Tempat Duduk</th>
@@ -60,4 +60,4 @@
 	</div>
 </div>
 
-<?php $this->view('inc_footer.php'); ?>r
+<?php $this->view('inc_footer.php'); ?>

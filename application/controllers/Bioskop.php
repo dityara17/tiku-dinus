@@ -27,7 +27,6 @@ class Bioskop extends CI_Controller
 		$this->load->view('pesan_tiket', $data);
 	}
 
-	// need to filter seat
 	public function pilih_kursi()
 	{
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
@@ -35,8 +34,6 @@ class Bioskop extends CI_Controller
 			$this->session->tanggal_nonton = $this->input->post('tanggal_nonton');
 			$this->session->id_jadwal = $this->input->post('sesi');
 		}
-
-
 
 		$data['film'] = $this->bioskop_model->get_film_by_id($this->session->id_film);
 		$data['sesi'] = $this->bioskop_model->get_jadwal_by_id($this->session->id_jadwal);
@@ -64,6 +61,11 @@ class Bioskop extends CI_Controller
 
 	public function cetak()
 	{
-		$this->load->view('print');
+		$id_identitas =$this->session->last_order['id_identitas'];
+
+
+		$data['identitas'] =  $this->bioskop_model->getIdentitas($id_identitas);
+
+		$this->load->view('print', $data);
 	}
 }
